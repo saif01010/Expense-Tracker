@@ -1,23 +1,24 @@
 const transectionTypeDef = `#graphql 
 type Transection{
-    id: ID!
+    _id: ID!
     amount: Float!
-    type: String!
+    paymentType: String!
     category: String!
-    note: String
+    description: String
+    user: User!
     createdAt: String!
     updatedAt: String!
 }
 
 type Query{
-    transections: [Transection!]!
-    transectionById(id: ID!): Transection!
+    getAllTransections: [Transection!]!
+    transectionById(_id: ID!): Transection!
 }
 
 type Mutation{
     addTransection(input: AddTransectionInput!): Transection!
-    updateTransection(id: ID!, input: UpdateTransectionInput!): Transection!
-    deleteTransection(id: ID!): Transection!
+    updateTransection(_id: ID!, input: UpdateTransectionInput!): Transection!
+    deleteTransection(_id: ID!): Transection!
 }
 
 input AddTransectionInput{

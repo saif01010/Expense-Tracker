@@ -1,8 +1,8 @@
 import {mergeTypeDefs} from '@graphql-tools/merge';
-import {userTypeDef} from './user.typeDef';
-import {transectionTypeDef} from './transection.typeDef';
+import {userTypeDef} from './user.typeDef.js';
+import {transectionTypeDef} from './transection.typeDef.js';
 
-const typeDefs = mergeTypeDefs([userTypeDef, transectionTypeDef]);
-console.log(typeDefs);
+const mergeTypeDef = mergeTypeDefs([userTypeDef, transectionTypeDef]);
 
-export {typeDefs}
+
+export {mergeTypeDef}

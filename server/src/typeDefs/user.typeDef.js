@@ -1,18 +1,19 @@
 const userTypeDef = `#graphql
 type User{
-    id: ID!
+    _id: ID!
     name: String!
     email: String!
     password: String!
     gender: String!
+    profilePic: String
     createdAt: String!
     updatedAt: String!
 
 }
 
 type Query{
-    users: [User!]!
-    user(id: ID!): User!
+    getUsers: [User!]!
+    userById(_id: ID!): User!
 
 }
 

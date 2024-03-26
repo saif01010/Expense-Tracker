@@ -1,0 +1,3 @@
+const transectionResolver ={};
+
+export { transectionResolver };
