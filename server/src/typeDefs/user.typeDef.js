@@ -13,6 +13,7 @@ type User{
 
 type Query{
     getUsers: [User!]!
+    currentUser: User!
     userById(_id: ID!): User!
 
 }

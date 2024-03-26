@@ -23,6 +23,7 @@
     "graphql": "^16.8.1",
     "graphql-passport": "^0.6.8",
     "mongoose": "^8.2.3",
+    "mongoose-aggregate-paginate-v2": "^1.0.7",
     "passport": "^0.7.0"
   }
 }
