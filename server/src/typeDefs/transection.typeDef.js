@@ -1,6 +1,7 @@
 const transectionTypeDef = `#graphql 
 type Transection{
     _id: ID!
+    userId: ID!
     amount: Float!
     paymentType: String!
     category: String!
