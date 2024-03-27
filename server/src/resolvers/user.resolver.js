@@ -47,7 +47,7 @@ const userResolver = {
         await context.login(user);
         return user;
     }),
-    logOut: asyncHandler(async(_,_,context)=>{
+    logOut: asyncHandler(async(_,args,context)=>{
         await context.logout();
         context.req.session.destroy((err)=>{
             if(err) throw new Error("Something went wrong while logging out");
@@ -60,7 +60,7 @@ const userResolver = {
         getUsers:asyncHandler(async()=>{
             return await User.find();
         }),
-        currentUser:asyncHandler(async(_,_,context)=>{
+        currentUser:asyncHandler(async(_,args,context)=>{
            const user= await context.getUser();
               return user;
         }),

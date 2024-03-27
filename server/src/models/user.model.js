@@ -1,5 +1,5 @@
 import mongoose ,{Schema} from 'mongoose';
-import {aggregatePaginate } from 'mongoose-aggregate-paginate-v2';
+import aggregatePaginate  from 'mongoose-aggregate-paginate-v2';
 import bcrypt from 'bcryptjs';
 
 const userSchema = new Schema({

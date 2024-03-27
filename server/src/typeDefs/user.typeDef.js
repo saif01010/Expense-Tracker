@@ -5,6 +5,7 @@ type User{
     email: String!
     password: String!
     gender: String!
+    transections: [Transection!]
     profilePic: String
     createdAt: String!
     updatedAt: String!
