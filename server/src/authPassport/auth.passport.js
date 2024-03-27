@@ -4,7 +4,7 @@ import { User } from "../models/user.model.js";
 export const authPassport = (passport) => {
     passport.serializeUser((user, done) => {
         console.log("serializeUser", user);
-        done(null, user.id);
+        done(null, user);
 
     });
 

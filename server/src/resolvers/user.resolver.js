@@ -5,6 +5,7 @@ import asyncHandler from '../../utils/asyncHandler.js';
 const userResolver = {
     Mutation:{
         signUp: asyncHandler(async(_,{input},context)=>{
+            // console.log(context);
             const {name,email,password,gender} = input;
             if(!name || !email || !password || !gender){
                 throw new Error("All fields are required");
@@ -25,7 +26,7 @@ const userResolver = {
                 gender,
                 profilePic: gender === "Male" ? boyProfilePic : girlProfilePic
             });
-            await context.longin(user);
+            await context.login(user);
             return user;
 
     }),
