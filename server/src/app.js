@@ -49,7 +49,7 @@ await server.start();
 
 app.use('/graphql',
     expressMiddleware(server,
-    {context:({req,res})=>buildContext({req,res})
+    {context:async({req,res})=>buildContext({req,res})
 }));
 
 
