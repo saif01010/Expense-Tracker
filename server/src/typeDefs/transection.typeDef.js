@@ -30,15 +30,14 @@ input AddTransectionInput{
 }
 
 input UpdateTransectionInput{
+    _id: ID!
     amount: Float
     type: String
     category: String
     note: String
 }
 
-type deleteTransection{
-    message: String!
-}
+
 `
 
 export { transectionTypeDef }

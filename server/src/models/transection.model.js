@@ -25,7 +25,7 @@ const transectionSchema = new Schema({
         required: true
     },
     user:{
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.String,
         ref: 'User',
         required: true
     },

@@ -1,4 +1,4 @@
-import {userTypeDef} from '../typeDefs/user.typeDef.js';
+// import {userTypeDef} from '../typeDefs/user.typeDef.js';
 import { User } from '../models/user.model.js';
 import { Transection} from '../models/transection.model.js';
 import asyncHandler from '../../utils/asyncHandler.js';
