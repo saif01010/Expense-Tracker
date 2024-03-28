@@ -1,13 +1,14 @@
 import { GraphQLLocalStrategy } from "graphql-passport";
 import { User } from "../models/user.model.js";
+import passport from "passport";
 
-export const authPassport = (passport) => {
+export const authPassport = () => {
     passport.serializeUser((user, done) => {
         console.log("serializeUser", user);
         done(null, user);
-
+    
     });
-
+    
     passport.deserializeUser(async (id, done) => {
         try {
             const user = await User.findById(id);
@@ -17,6 +18,7 @@ export const authPassport = (passport) => {
             done(error);
         }
     });
+    
     passport.use(
         new GraphQLLocalStrategy(async (email, password, done) => {
             try {

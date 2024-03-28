@@ -31,6 +31,7 @@ const userResolver = {
 
     }),
     signIn: asyncHandler(async(_,{input},context)=>{
+        // console.log(context);
         const {email,password} = input;
         if(!email || !password){
             throw new Error("All fields are required");
@@ -39,11 +40,11 @@ const userResolver = {
         if(!existUser){
             throw new Error("User not found");
         };
-        const isPasswordMatch = await user.comparePassword(password);
+        const isPasswordMatch = await existUser.comparePassword(password);
         if(!isPasswordMatch){
             throw new Error("Invalid password");
         };
-       const {user} = await context.authenticat("graphql-local", {email,password});
+       const {user} = await context.authenticate("graphql-local", {email,password});
        console.log(user);
         await context.login(user);
         return user;
@@ -53,7 +54,7 @@ const userResolver = {
         context.req.session.destroy((err)=>{
             if(err) throw new Error("Something went wrong while logging out");
         });
-        context.res.clearCookie("qid");
+        context.res.clearCookie("connect.sid");
         return {message:"Logged out successfully"};
     })
 },

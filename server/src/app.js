@@ -8,8 +8,12 @@ import {expressMiddleware} from '@apollo/server/express4';
 import connectMongo from "connect-mongodb-session";
 import {mergeTypeDef} from "./typeDefs/index.typeDef.js"
 import {mergeResolver} from "./resolvers/index.resolver.js"
+import { authPassport } from './authPassport/auth.passport.js';
+
+authPassport();
 
 const app = express();
+
 
 app.use(express.json());
 app.use(cors({
