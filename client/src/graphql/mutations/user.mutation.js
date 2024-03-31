@@ -21,4 +21,13 @@ export const SIGN_IN = gql`
             email
             profilePic
         }
-    }`;
+    }
+`;
+
+export const LogOut = gql`
+    mutation logOut {
+        logOut{
+            message
+        }
+    }
+`;

@@ -7,7 +7,7 @@ const transectionSchema = new Schema({
     },
     category:{
         type: String,
-        enum: ["saving", "expense", "investment"],
+        enum: ["Saving", "Expense", "Investment"],
         required: true
     },
     paymentType:{

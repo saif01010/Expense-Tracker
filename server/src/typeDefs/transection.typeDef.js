@@ -7,6 +7,7 @@ type Transection{
     category: String!
     description: String
     user: User!
+    date: String!
     createdAt: String!
     updatedAt: String!
 }
@@ -24,17 +25,19 @@ type Mutation{
 
 input AddTransectionInput{
     amount: Float!
-    type: String!
+    paymentType: String!
     category: String!
-    note: String
+    description: String
+    date: String!
 }
 
 input UpdateTransectionInput{
     _id: ID!
     amount: Float
-    type: String
+    paymentType: String
     category: String
-    note: String
+    description: String
+    date: String
 }
 
 
