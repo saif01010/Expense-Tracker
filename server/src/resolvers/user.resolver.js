@@ -68,7 +68,8 @@ const userResolver = {
             return await User.find();
         }),
         currentUser:asyncHandler(async(_,args,context)=>{
-           const user= await context.getUser();
+           const user=  await context.getUser();
+           console.log("Current User",user);
               return user;
         }),
         userById:asyncHandler(async(_,{_id})=>{
