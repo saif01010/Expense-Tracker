@@ -1,7 +1,7 @@
 // import {userTypeDef} from '../typeDefs/user.typeDef.js';
 import { User } from '../models/user.model.js';
 import { Transection} from '../models/transection.model.js';
-import asyncHandler from '../../utils/asyncHandler.js';
+import asyncHandler from '../utils/asyncHandler.js';
 const userResolver = {
     Mutation:{
         signUp: asyncHandler(async(_,{input},context)=>{
@@ -27,6 +27,10 @@ const userResolver = {
                 profilePic: gender === "Male" ? boyProfilePic : girlProfilePic
             });
             await context.login(user);
+            console.log("SignUp",user);
+            // const authuser = await context.authenticate("graphql-local", {email,password});
+            // console.log("AuthUser",authuser);
+            // console.log(context.req.cookie)
             return user;
 
     }),
@@ -47,6 +51,7 @@ const userResolver = {
        const {user} = await context.authenticate("graphql-local", {email,password});
        console.log(user);
         await context.login(user);
+        
         return user;
     }),
     logOut: asyncHandler(async(_,args,context)=>{

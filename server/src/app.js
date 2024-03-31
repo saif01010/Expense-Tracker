@@ -17,15 +17,18 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin:'*',
-    credentials:true
+    origin: "http://localhost:4000",
+	credentials: true,
 }));
 const MongoStore = connectMongo(session);
 const store = new MongoStore({
-    url:process.env.MONGO_URI,
-    collectionName:'sessions'
+    uri:process.env.MONGO_URI,
+    collection:'sessions'
 });
-
+// console.log(store);
+store.on('connected',()=>{
+    console.log("Connected to mongo store");
+});
 store.on('error',err=>{
     console.log(err);
 });
@@ -46,7 +49,8 @@ app.use(passport.session());
 
 const server = new ApolloServer({
     typeDefs:mergeTypeDef,
-    resolvers:mergeResolver
+    resolvers:mergeResolver,
+
 });
 
 await server.start();

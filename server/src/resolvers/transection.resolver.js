@@ -1,5 +1,5 @@
 import { Transection } from "../models/transection.model.js";
-import asyncHandler from "../../utils/asyncHandler.js";
+import asyncHandler from "../utils/asyncHandler.js";
 import { User } from "../models/user.model.js";
 const transectionResolver ={
     Mutation:{
@@ -47,16 +47,16 @@ const transectionResolver ={
             };
            const transection =  await Transection.findOneAndDelete({_id});
             return transection;
-        }),
-        Transection:{
-            user:asyncHandler(async(parent)=>{
-                const user = await User.findById(parent.userId);
-                if(!user){
-                    throw new Error("User not found");
-                }
-                return user;
-            })
-        }
+        })
+    },
+    Transection:{
+        user:asyncHandler(async(parent)=>{
+            const user = await User.findById(parent.userId);
+            if(!user){
+                throw new Error("User not found");
+            }
+            return user;
+        })
     },
     Query:{
         getAllTransections:asyncHandler(async(_,args,context)=>{
