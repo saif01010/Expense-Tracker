@@ -10,7 +10,7 @@ const LoginPage = () => {
 		email: "",
 		password: "",
 	});
-	const [signIn,{loading}] = useMutation(SIGN_IN)
+	const [signIn,{loading}] = useMutation(SIGN_IN, {refetchQueries:['getCurrentUser']})
 
 	
 
@@ -54,7 +54,7 @@ const LoginPage = () => {
 								label='Email'
 								id='email'
 								name='email'
-								value={loginData.username}
+								value={loginData.email}
 								onChange={handleChange}
 							/>
 

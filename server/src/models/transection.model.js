@@ -29,9 +29,13 @@ const transectionSchema = new Schema({
         ref: 'User',
         required: true
     },
-    data:{
+    date:{
         type: Date,
         required: true
+    },
+    location:{
+        type: String,
+        default:""
     }
 }, {timestamps: true});
 

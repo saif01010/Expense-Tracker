@@ -4,7 +4,7 @@ import passport from "passport";
 
 export const authPassport = () => {
     passport.serializeUser((user, done) => {
-        console.log("serializeUser", user);
+        // console.log("serializeUser", user);
         done(null, user);
     
     });
@@ -12,7 +12,7 @@ export const authPassport = () => {
     passport.deserializeUser(async (id, done) => {
         try {
             const user = await User.findById(id);
-            console.log("deserializeUser", user);
+            // console.log("deserializeUser", user);
             done(null, user);
         }catch (error) {
             done(error);

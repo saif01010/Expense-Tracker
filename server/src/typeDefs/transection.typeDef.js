@@ -8,6 +8,7 @@ type Transection{
     description: String
     user: User!
     date: String!
+    location: String!
     createdAt: String!
     updatedAt: String!
 }
@@ -27,8 +28,9 @@ input AddTransectionInput{
     amount: Float!
     paymentType: String!
     category: String!
-    description: String
+    description: String 
     date: String!
+    location: String
 }
 
 input UpdateTransectionInput{
@@ -38,6 +40,7 @@ input UpdateTransectionInput{
     category: String
     description: String
     date: String
+    location: String
 }
 
 

@@ -1,4 +1,9 @@
+import { useMutation } from "@apollo/client";
+import { ADD_TRANSACTION } from "../graphql/mutations/transaction.mutation";
+import { toast } from "react-hot-toast";
+
 const TransactionForm = () => {
+	const [addTransection, {loading}]=useMutation(ADD_TRANSACTION)
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -12,6 +17,21 @@ const TransactionForm = () => {
 			location: formData.get("location"),
 			date: formData.get("date"),
 		};
+		try {
+			const { data } = await addTransection({
+				variables: {
+					input: transactionData,
+				},
+			});
+			console.log("data", data);
+			toast.success("Transaction added successfully");
+			form.reset();
+			
+		} catch (error) {
+			console.log("error", error);
+			toast.error(error.message);
+			
+		}
 		console.log("transactionData", transactionData);
 	};
 
@@ -80,9 +100,9 @@ const TransactionForm = () => {
 							id='category'
 							name='category'
 						>
-							<option value={"saving"}>Saving</option>
-							<option value={"expense"}>Expense</option>
-							<option value={"investment"}>Investment</option>
+							<option value={"Saving"}>Saving</option>
+							<option value={"Expense"}>Expense</option>
+							<option value={"Investment"}>Investment</option>
 						</select>
 						<div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
 							<svg
@@ -150,8 +170,9 @@ const TransactionForm = () => {
           from-pink-500 to-pink-500 hover:from-pink-600 hover:to-pink-600
 						disabled:opacity-70 disabled:cursor-not-allowed'
 				type='submit'
+				disabled={loading}
 			>
-				Add Transaction
+				{loading ? "Saving..." : "Add Transaction"}
 			</button>
 		</form>
 	);

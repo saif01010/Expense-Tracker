@@ -16,7 +16,7 @@ const SignUpPage = () => {
 	});
 
 
-    const [signUp,{loading}]=useMutation(SIGN_UP,{refetchQueries:['currentUser']});
+    const [signUp,{loading}]=useMutation(SIGN_UP,{refetchQueries:['getCurrentUser']});
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

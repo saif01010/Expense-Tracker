@@ -4,15 +4,18 @@ import { User } from "../models/user.model.js";
 const transectionResolver ={
     Mutation:{
         addTransection: asyncHandler(async(_,{input},context)=>{
-            const {amount,paymentType,description,category,date} = input;
-            if(!amount || !paymentType || !description || !category || !date){
+            const {amount,paymentType,description,category,date,location} = input;
+            console.log(amount,paymentType,category,date,location);
+            if(!amount || !paymentType  || !category || !date){
                 throw new Error("All fields are required");
             };
             const isUser = await context.getUser();
+            console.log(isUser);
             if(!isUser){
                 throw new Error("User not found");
             };
-            const userid = user._id;
+            const userid = isUser._id;
+            console.log(userid);
             const user = isUser.name;
             const transection = await Transection.create({
                 amount,
@@ -21,7 +24,8 @@ const transectionResolver ={
                 category,
                 userId: userid,
                 user,
-                date
+                date,
+                location
             });
 
             return transection;

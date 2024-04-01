@@ -27,7 +27,7 @@ const userResolver = {
                 profilePic: gender === "Male" ? boyProfilePic : girlProfilePic
             });
             await context.login(user);
-            console.log("SignUp",user);
+            // console.log("SignUp",user);
             // const authuser = await context.authenticate("graphql-local", {email,password});
             // console.log("AuthUser",authuser);
             // console.log(context.req.cookie)
@@ -69,7 +69,7 @@ const userResolver = {
         }),
         currentUser:asyncHandler(async(_,args,context)=>{
            const user=  await context.getUser();
-           console.log("Current User",user);
+        //    console.log("Current User",user);
               return user;
         }),
         userById:asyncHandler(async(_,{_id})=>{
