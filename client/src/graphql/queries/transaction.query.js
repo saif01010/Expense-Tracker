@@ -9,6 +9,7 @@ export const GET_TRANSACTIONS = gql`
             paymentType
             description
             date
+            location
         }
     }
 `;

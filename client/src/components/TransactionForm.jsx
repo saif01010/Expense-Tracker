@@ -3,7 +3,7 @@ import { ADD_TRANSACTION } from "../graphql/mutations/transaction.mutation";
 import { toast } from "react-hot-toast";
 
 const TransactionForm = () => {
-	const [addTransection, {loading}]=useMutation(ADD_TRANSACTION)
+	const [addTransection, {loading}]=useMutation(ADD_TRANSACTION,{refetchQueries:['getTransactions']})
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
