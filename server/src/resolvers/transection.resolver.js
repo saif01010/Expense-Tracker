@@ -48,6 +48,7 @@ const transectionResolver ={
         }),
         deleteTransection: asyncHandler(async(_,{_id},context)=>{
             const isUser = await context.getUser();
+            console.log("Delete Transection",isUser);
             if(!isUser){
                 throw new Error("User not found");
             };

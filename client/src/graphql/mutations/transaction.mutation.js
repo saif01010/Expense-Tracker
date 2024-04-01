@@ -28,3 +28,11 @@ export const UPDATE_TRANSACTION = gql`
         }
     }
 `;
+
+export const DELETE_TRANSACTION = gql`
+    mutation deleteTransection($_id: ID!) {
+        deleteTransection(_id: $_id) {
+            _id
+        }
+    }
+`;
