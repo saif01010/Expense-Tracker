@@ -32,7 +32,8 @@ const transectionResolver ={
 
         }),
         updateTransection: asyncHandler(async(_,{_id,input},context)=>{
-            const {amount,paymentType,description,category,date} = input;
+            const {amount,paymentType,description,category,date,location} = input;
+            console.log(amount,paymentType,category,date);
             const isUser = await context.getUser();
             if(!isUser){
                 throw new Error("User not found");
@@ -42,7 +43,8 @@ const transectionResolver ={
                 paymentType,
                 description,
                 category,
-                date
+                date,
+                location
             },{new:true});
             return transection;
         }),

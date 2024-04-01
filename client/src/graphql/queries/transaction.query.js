@@ -23,6 +23,7 @@ export const getTransactionsById = gql`
             paymentType
             description
             date
+            location
         }
     }
 `;

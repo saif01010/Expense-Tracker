@@ -19,7 +19,7 @@ function App() {
   return (
     <div>
     {data?.currentUser && <Header/>}
-    {console.log(data)}
+    {/* {console.log(data)} */}
     <Routes>
         <Route path="/" element={data?.currentUser? <HomePage/> : <Navigate to='/login'/> } />
         <Route path="/signup" element={ !data?.currentUser?<SignUpPage/> : <Navigate to='/'/> } />

@@ -16,8 +16,8 @@ export const ADD_TRANSACTION = gql`
 
 
 export const UPDATE_TRANSACTION = gql`
-    mutation updateTransaction($_id: ID!, $input: TransactionInput!) {
-        updateTransaction(_id: $_id, input: $input) {
+    mutation updateTransection($_id: ID!, $input: UpdateTransectionInput!) {
+        updateTransection(_id: $_id, input: $input) {
             _id
             amount
             category
