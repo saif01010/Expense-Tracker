@@ -56,7 +56,8 @@ const transectionResolver ={
             };
            const transection =  await Transection.findOneAndDelete({_id});
             return transection;
-        })
+        }),
+
     },
     Transection:{
         user:asyncHandler(async(parent)=>{
@@ -86,6 +87,34 @@ const transectionResolver ={
                 throw new Error("Transection not found");
             };
             return transection;
+        }),
+        catagagroryStats:asyncHandler(async(_,args,context)=>{
+            const isUser = await context.getUser();
+            if(!isUser){
+                throw new Error("User not found");
+            };
+            const stats = await Transection.aggregate([
+                {
+                    $match:{
+                        userId:isUser._id
+                    }
+                },
+                {
+                    $group:{
+                        _id:"$category",
+                        total:{$sum:"$amount"}
+                    }
+                },
+                {
+                    $project:{
+                        category:1,
+                        total:1,
+                        _id:1
+                    }
+                }
+            ]);
+            console.log(stats);
+            return stats;
         })
     }
 }

@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 const TransactionPage = () => {
 	const { id } = useParams();
 	const { data, loading } = useQuery(getTransactionsById,{variables:{_id:id}});
-	const [updateTransection,{loading:updateLoading}] = useMutation(UPDATE_TRANSACTION);
+	const [updateTransection,{loading:updateLoading}] = useMutation(UPDATE_TRANSACTION,{refetchQueries:["getTransactions", "getCatagoryStats"]});
 	// console.log(data)
 
 

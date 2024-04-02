@@ -28,3 +28,13 @@ export const getTransactionsById = gql`
     }
 `;
 
+export const Get_Catagory_Stats = gql`
+    query getCatagoryStats {
+        catagagroryStats {
+            _id
+            category
+            total
+        }
+    }
+`;
+

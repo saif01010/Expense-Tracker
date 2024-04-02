@@ -9,27 +9,61 @@ import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { MdLogout } from "react-icons/md";
 import {toast} from 'react-hot-toast';
+import { useEffect, useState } from "react";
+import { Get_Catagory_Stats } from "../graphql/queries/transaction.query";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const HomePage = () => {
-	const chartData = {
-		labels: ["Saving", "Expense", "Investment"],
+	const [chartData, setChardata] = useState({
+		labels: [],
 		datasets: [
 			{
-				label: "%",
-				data: [13, 8, 3],
-				backgroundColor: ["rgba(75, 192, 192)", "rgba(255, 99, 132)", "rgba(54, 162, 235)"],
-				borderColor: ["rgba(75, 192, 192)", "rgba(255, 99, 132)", "rgba(54, 162, 235, 1)"],
+				label: "₹",
+				data: [],
+				backgroundColor: [],
+				borderColor: [],
 				borderWidth: 1,
 				borderRadius: 30,
 				spacing: 10,
 				cutout: 130,
 			},
 		],
-	};
-
+	});
+	const { data: catagoryStats } = useQuery(Get_Catagory_Stats,{refetchQueries:['getCatagoryStats']});
 	const { data } = useQuery(Get_Current_User);
+
+	useEffect(() => {
+		if(catagoryStats?.catagagroryStats){
+			const labels = catagoryStats.catagagroryStats.map((stat) => stat.category);
+			const data = catagoryStats.catagagroryStats.map((stat) => stat.total);
+			const backgroundColor = catagoryStats.catagagroryStats.map((stat) => {
+				if (stat.category === "Saving") return "rgba(75, 192, 192, 0.2)";
+				if (stat.category === "Expense") return "rgba(255, 99, 132, 0.2)";
+				if (stat.category === "Investment") return "rgba(54, 162, 235, 0.2)";
+			});
+			const borderColor = catagoryStats.catagagroryStats.map((stat) => {
+				if (stat.category === "Saving") return "rgba(75, 192, 192, 1)";
+				if (stat.category === "Expense") return "rgba(255, 99, 132, 1)";
+				if (stat.category === "Investment") return "rgba(54, 162, 235, 1)";
+			});
+			setChardata({
+				labels,
+				datasets: [ 
+					{
+						label: "₹",
+						data,
+						backgroundColor,
+						borderColor,
+						borderWidth: 1,
+						borderRadius: 30,
+						spacing: 10,
+						cutout: 130,
+					},
+				],
+			});
+		}
+	}, [catagoryStats]);
 
 	const [logOut,{loading,client}] = useMutation(LogOut,{refetchQueries:['getCurrentUser']});
 

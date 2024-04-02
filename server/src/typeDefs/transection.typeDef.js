@@ -16,12 +16,18 @@ type Transection{
 type Query{
     getAllTransections: [Transection!]!
     transectionById(_id: ID!): Transection!
+    catagagroryStats: [CatagoryStat!]!
 }
 
 type Mutation{
     addTransection(input: AddTransectionInput!): Transection!
     updateTransection(_id: ID!, input: UpdateTransectionInput!): Transection!
     deleteTransection(_id: ID!): Transection!
+}
+type CatagoryStat{
+    _id: ID!
+    category: String!
+    total: Float!
 }
 
 input AddTransectionInput{
