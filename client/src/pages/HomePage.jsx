@@ -1,6 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
+
 import Cards from "../components/Cards";
 import TransactionForm from "../components/TransactionForm";
 import { LogOut } from "../graphql/mutations/user.mutation";
@@ -38,12 +39,12 @@ const HomePage = () => {
 			const labels = catagoryStats.catagagroryStats.map((stat) => stat.category);
 			const data = catagoryStats.catagagroryStats.map((stat) => stat.total);
 			const backgroundColor = catagoryStats.catagagroryStats.map((stat) => {
-				if (stat.category === "Saving") return "rgba(75, 192, 192, 0.2)";
-				if (stat.category === "Expense") return "rgba(255, 99, 132, 0.2)";
-				if (stat.category === "Investment") return "rgba(54, 162, 235, 0.2)";
+				if (stat.category === "Saving") return "rgba(75, 192, 192, 1)";
+				if (stat.category === "Expense") return "rgba(255, 99, 132, 1)";
+				if (stat.category === "Investment") return "rgba(54, 162, 235, 1)";
 			});
 			const borderColor = catagoryStats.catagagroryStats.map((stat) => {
-				if (stat.category === "Saving") return "rgba(75, 192, 192, 1)";
+				if (stat.category === "Saving") return "rgba(75, 192, 192,1)";
 				if (stat.category === "Expense") return "rgba(255, 99, 132, 1)";
 				if (stat.category === "Investment") return "rgba(54, 162, 235, 1)";
 			});
@@ -71,6 +72,10 @@ const HomePage = () => {
 		try {
 			await logOut();
 			client.clearStore();
+
+			toast.success("Logged out successfully");
+			
+			if(!loading) window.location.replace("/login");	
 			
 		} catch (error) {
 			console.log(error);
@@ -98,8 +103,8 @@ const HomePage = () => {
 					{/* loading spinner */}
 					{loading && <div className='w-6 h-6 border-t-2 border-b-2 mx-2 rounded-full animate-spin'></div>}
 				</div>
-				<div className='flex flex-wrap w-full justify-center items-center gap-6'>
-					<div className='h-[330px] w-[330px] md:h-[360px] md:w-[360px]  '>
+				<div className='flex flex-wrap w-full justify-center items-center gap-6 opacity-100 '>
+					<div className='h-[330px] w-[330px] md:h-[360px] md:w-[360px] trans  '>
 						<Doughnut data={chartData} />
 					</div>
 

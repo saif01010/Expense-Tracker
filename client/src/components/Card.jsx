@@ -26,7 +26,7 @@ const Card = ({ transaction }) => {
 	description = description?.[0].toUpperCase() + description?.slice(1);
 	category = category?.[0].toUpperCase() + category?.slice(1);
 	const formatedDate = formatDate(date);
-	const [deleteTransection,{loading}]=useMutation(DELETE_TRANSACTION, {refetchQueries: ["getTransactions"]});
+	const [deleteTransection,{loading}]=useMutation(DELETE_TRANSACTION, {refetchQueries: ["getTransactions","getCatagoryStats"]});
 	const handleDelete = async() => {
 		try{
 			await deleteTransection({

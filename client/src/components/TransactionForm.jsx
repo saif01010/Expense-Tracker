@@ -32,7 +32,7 @@ const TransactionForm = () => {
 			toast.error(error.message);
 			
 		}
-		console.log("transactionData", transactionData);
+		// console.log("transactionData", transactionData);
 	};
 
 	return (

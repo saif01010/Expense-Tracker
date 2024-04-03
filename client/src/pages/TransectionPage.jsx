@@ -25,7 +25,8 @@ const TransactionPage = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const amount = parseFloat(formData.amount); 		try {
+		const amount = parseFloat(formData.amount); 		
+		try {
 			await updateTransection({
 				variables: {
 					_id: id,

@@ -37,7 +37,7 @@ const LoginPage = () => {
 			toast.error(error.message);
 			
 		}
-		console.log(loginData);
+		// console.log(loginData);
 	};
 
 	return (

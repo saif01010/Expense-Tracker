@@ -102,6 +102,7 @@ const transectionResolver ={
                 {
                     $group:{
                         _id:"$category",
+                        category:{$first:"$category"},
                         total:{$sum:"$amount"}
                     }
                 },
@@ -109,11 +110,11 @@ const transectionResolver ={
                     $project:{
                         category:1,
                         total:1,
-                        _id:1
+                        
                     }
                 }
             ]);
-            console.log(stats);
+            // console.log(stats);
             return stats;
         })
     }

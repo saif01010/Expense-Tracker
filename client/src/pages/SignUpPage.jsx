@@ -30,7 +30,7 @@ const SignUpPage = () => {
 			console.log(error);
 			toast.error(error.message);	
 		}
-		console.log(signUpData);
+		// console.log(signUpData);
 	};
 
 	const handleChange = (e) => {

@@ -60,6 +60,7 @@ const userResolver = {
             if(err) throw new Error("Something went wrong while logging out");
         });
         context.res.clearCookie("connect.sid");
+        context.res.status(200);
         return {message:"Logged out successfully"};
     })
 },
