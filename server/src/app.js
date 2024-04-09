@@ -9,6 +9,7 @@ import connectMongo from "connect-mongodb-session";
 import {mergeTypeDef} from "./typeDefs/index.typeDef.js"
 import {mergeResolver} from "./resolvers/index.resolver.js"
 import { authPassport } from './authPassport/auth.passport.js';
+import path from 'path';
 
 authPassport();
 
@@ -59,6 +60,12 @@ app.use('/graphql',
     expressMiddleware(server,
     {context:async({req,res})=>buildContext({req,res})
 }));
+
+app.use(express.static(path.join(__dirname, 'frontend/dist')))
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/dist', 'index.html'))
+})
 
 
 
