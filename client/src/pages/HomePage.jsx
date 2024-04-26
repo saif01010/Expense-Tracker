@@ -75,7 +75,7 @@ const HomePage = () => {
 
 			toast.success("Logged out successfully");
 			
-			if(!loading) window.location.replace("/login");	
+			// if(!loading) window.location.replace("/login");	
 			
 		} catch (error) {
 			console.log(error);
